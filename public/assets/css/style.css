@@ -1,0 +1,852 @@
+/* import font */
+@font-face{
+    font-family: raleway;
+    src: url('../fonts/Raleway-Medium.ttf');
+}
+/* general styling */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow-x: hidden;
+    font-family: raleway, sans-serif;
+}
+.container{
+    min-height: 660px;
+}
+.mini-wrapper{
+	position: relative;
+    margin: 0 auto;
+    width: 50%;
+}
+.wrapper{
+    position: relative;
+    margin: 0 auto;
+    width: 70%;
+}
+.fluid-wrapper{
+    position: relative;
+    margin: 0 auto;
+    width: 94%;
+}
+.text-center{
+    text-align: center;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+.info{
+    color: gray;
+    font-style: italic;
+    font-size: 11pt;
+}
+
+/* alert */
+@keyframes alert{
+	0%{
+		top: -50px;
+	}
+	50%{
+		top: 20px;
+	}
+	100%{
+		top: -50px;
+	}
+}
+.alert{
+	animation: alert 4s;
+	transition: 0.3s all;
+	position: absolute;
+	z-index: 4;
+	top: -50px;
+	text-align: center;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	height: 40px;
+	width: 300px;
+	padding: 9px 0px;
+	box-sizing: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	color: #fff;
+	font-style: italic;
+	font-weight: bold;
+}
+.alert.alert-danger{
+	background: #F44336;
+}
+.alert.alert-success{
+	background: #8BC34A;
+}
+
+/*modal*/
+div[id|="modal"] {
+	position: fixed;
+	z-index: 999;
+	top: 0px;
+	left: 0px;
+	background: rgba(0,0,0,0.2);
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.modal-close {
+    color: #fff;
+	position: absolute;
+	top: -19px;
+	right: -19px;
+	display: inline-block;
+	background: #f44336;
+	padding: 8px 10px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 100px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.modal-close img {
+	width: 16px;
+	margin-bottom: -3px;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+	background: #c3362b;
+}
+
+.modal-container {
+	text-align: left;
+	margin: 4% auto;
+	width: 370px;
+	position: relative;
+	display: inline-block;
+	background: #fff;
+	padding: 20px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 3px;
+	box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.1);
+	animation: modal 1s;
+}
+
+/*ini animasi untuk modal*/
+@keyframes modal {
+	from {transform: scale(0);}
+	to {transform: scale(1);}
+}
+
+/* Navigation bar start */
+.nav-wrapper{
+    position: relative;
+    margin: 0 auto;
+    width: 70%;
+}
+nav{
+    background: #2196f3;
+    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.18);
+    color: #f1f1f1;
+    height: 80px;
+    line-height: 80px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 3;
+}
+.paddingNav{
+    padding-top: 80px;
+}
+.navbar-brand{
+    color: #fff;
+    float: left;
+    padding: 0px 20px;
+}
+.navbar-brand a{
+    color: inherit;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+.navbar-brand.admin{
+    height: 60px;
+    line-height: 60px;
+    float: none;
+    background: #fff;
+    color: #222;
+}
+.navbar {
+    display: inline-block;
+}
+.navbar li{
+    margin: 0px -2.05px;
+    display: inline-block;
+    padding: 0px 15px;
+    transition: 0.3s all;
+}
+.navbar li:hover{
+    background: rgba(82, 82, 82, 0.76);
+    color: #fff;
+}
+.navbar .active{
+    background: rgba(97, 97, 97, 0.6);
+    color: #fff;
+}
+.navbar a{
+    color: inherit;
+    text-decoration: none;
+}
+.left-nav{
+    float:left;
+}
+.right-nav{
+    float: right;
+}
+.bar{
+    background: #fff;
+    display: block;
+    margin: 5px 0px;
+    height: 4px;
+    width: 32px;
+}
+.btn-toggle{
+    display: none;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    width: 40px;
+}
+#btn-toggle2-wrapper{
+    display: block;
+    width:  40px;
+    height:  40px;
+    position:  absolute;
+    right: 34px;
+    z-index: 2;
+}
+#btn-toggle2{
+    margin: 32px 0px;
+    width: 40px;
+    height: 40px;
+    float: right;
+}
+#btn-toggle2 span{
+    border-radius: 2px;
+    display:  block;
+    width: 35px;
+    height: 4px;
+    background: #fff;
+    margin: 6px 0px;
+}
+#btn-toggle2 span:nth-child(1){
+    transform: rotate(42deg);
+}
+#btn-toggle2 span:nth-child(2){
+    visibility: hidden;
+}
+#btn-toggle2 span:nth-child(3){
+    margin-top: -20px;
+    transform: rotate(135deg);
+}
+#menu-toggle{
+    display: none;
+}
+#menu-divider, #menu-login:hover{
+    background: none;
+}
+/* Navigation bar stop */
+
+/* Content start */
+
+/* jumbotron */
+.jumbotron{
+    background: url('../img/banner.jpg') no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    padding: 97px 0px;
+    width: 100%;
+}
+.filter-overlay{
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+}
+.jumbotron .text-center{
+    color: #fff;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+.jumbotron h1{
+    font-size: 2.5em;
+}
+.jumbotron i{
+    font-size: 1.2em;
+}
+/* section */
+section{
+    padding: 101px 0px;
+    box-sizing: border-box;
+    height: 420px;
+}
+section.shadow{
+    padding: unset;
+    margin: 30px 0px;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+    height: auto;
+}
+.section-content{
+    min-height: 200px;
+    padding: 20px;
+}
+section h1{
+    color: #222;
+    font-size: 1.8em;
+    margin: 20px 0px;
+}
+section.text-center p{
+    margin: 0 auto!important;
+}
+section p{
+    color: #444;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    max-width: 550px;
+}
+#section-2{
+    background: #f1f1f1;
+    height: 500px;
+}
+#section-2 h1{
+    margin-bottom: 30px;
+}
+.box3{
+    display: inline-block;
+    width: 32.3%;
+    margin: 0px 3px;
+}
+.box5{
+    display: inline-block;
+    width: 19.0%;
+    margin: 0px 3px;
+}
+.box4{
+    vertical-align: top;
+    display: inline-block;
+    width: 23.6%;
+    margin: 0px 3px;
+}
+.box3 i{
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    border: 2px solid #222;
+    border-radius: 50%;
+    margin: 10px 0px;
+    font-size: 1.75em;
+}
+#section-3{
+    background: #fff;
+    height: 500px;
+}
+#section-3 .box3{
+    width: 100%;
+}
+#section-3 .box3 p{
+    text-align: justify;
+}
+#section-3 .box3-wrap{
+    width: 400px;
+    position: relative;
+    margin: 4% auto;
+}
+#section-3 .box3-wrap:before{
+    position: absolute;
+    top: 0;
+    content: url(../img/icons/quote_left.png);
+    width: 30px;
+    height: 30px;
+    left: 0;
+}
+#section-3 .box3-wrap:after{
+    position: absolute;
+    top: 0;
+    content: url(../img/icons/quote_right.png);
+    width: 30px;
+    height: 30px;
+    right: 0;
+}
+/* Content stop */
+
+/* Dashboard styling start */
+.card-dashboard{
+    color: #fff;
+    vertical-align: top;
+    position: relative;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: auto;
+    height: 100px;
+    border-radius: 4px;
+}
+.card-dashboard.siswa{
+    background: #FF9800;
+}
+.card-dashboard.kelompok{
+    background: #4CAF50;
+}
+.card-dashboard.jurusan{
+    background: #2196F3;
+}
+.card-dashboard.pj-jurusan{
+    background: #9E9E9E;
+}
+.card-dashboard.dudi{
+    background: #F44336;
+}
+.card-dashboard i{
+    position: absolute;
+    height: auto;
+    width: 40px;
+    padding: 0px 10px;
+    font-size: 25pt;
+    top: 32px;
+    left: 12px;
+}
+.card-dash-text{
+    position: absolute;
+    top: 3px;
+    right: 15px;
+}
+.card-dash-text p{
+    color: #fff;
+    font-size: 2em;
+    float: right;
+}
+.card-dash-text span{
+    display: inline-block;
+    max-width: 80px;
+    font-size: 11pt;
+    text-align: right;
+}
+.nav-wrapper-admin{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+}
+.nav-top{
+    position: fixed;
+    z-index: 2;
+    line-height: 60px;
+    color: #fff;
+    background: #444;
+    width: 100%;
+    height: 60px;
+}
+.nav-top .navbar{
+    position: absolute;
+    z-index: 999;
+    right: 110px;
+}
+.navbar-admin .navbar{
+    display: block;
+}
+.navbar-admin{
+    position: fixed;
+    background: #2196f3;
+    width: 300px;
+    height: 100%;
+}
+.navbar-admin ul li{
+    display: block;
+    height: 70px;
+    line-height: 70px;
+}
+.navbar-admin ul li i{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    padding: 0px 10px;
+}
+.navbar-admin ul li a{
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.dashboard-section{
+    margin: 10px 0px 40px 0px;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    height: auto;
+    padding: 12px 26px;
+}
+.header-section{
+    display: block;
+    width: 100%;
+}
+.header-section .left{
+    width: 63%;
+}
+.header-section .right{
+    padding: 22px 0px;
+    width: 37%;
+}
+.header-section button{
+    display: inline-block;
+}
+.form-search{
+    display: inline-block;
+}
+.form-search input{
+    display: inline-block;
+    width: 200px;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td{
+    padding: 8px 4px;
+    border: 1px solid #b1b1b1;
+}
+th{
+    background: #dfdfdf;
+    text-align: left;
+}
+
+/* Dashboard styling stop */
+
+/* Dasbor siswa start*/
+#dasbor-siswa .box5{
+    width: 18%;
+}
+/* Dasbor siswa stop */
+
+/* Profile styling start */
+.btn.btn-white.btn-edit{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.btn-edit i{
+    font-size: 1.5em;
+}
+.profile-banner{
+    position: relative;
+    background: #888;
+    width: 100%;
+    height: 200px;
+}
+.profile-banner h1{
+    bottom: 20px;
+    left: 160px;
+    position: absolute;
+    color: #fff;
+}
+.avatar-profile{
+    bottom: 20px;
+    left: 20px;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+}
+/* Profile styling stop */
+
+/* Daftar DU/DI Styling start */
+.card-dudi{
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    width: 200px;
+    height: 200px;
+}
+.card-image{
+    height: 90px;
+    background: #888;
+}
+.card-content{
+    padding: 10px;
+    text-align: center;
+}
+/*  Daftar DU/DI Styling stop */
+
+/* Element styling start */
+.btn-link{
+    text-decoration: none;
+    color: #FFC107;
+}
+.btn{
+    text-transform: uppercase;
+    font-size: 10pt;
+    font-weight: bold;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 10px;
+    border-radius: 3px;
+    box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.21);
+    transition: 0.3s all;
+    text-decoration: none;
+    color: inherit;
+}
+.btn:hover{
+    cursor: pointer;
+    box-shadow: 1px 2px 13px 0px rgba(0, 0, 0, 0.5);
+}
+button{
+    display: inline-block;
+    background: transparent;
+    border: 0px;
+}
+button:focus{
+    outline: none;
+}
+.btn-block{
+    display: block;
+    width: 100%;
+}
+.btn-outline{
+    color: #fff;
+    border: 2px solid #fff;
+}
+.btn-outline:hover{
+    background: #fff;
+    color: #000;
+}
+.btn-white{
+    background: #fff;
+    color: #000;
+}
+.btn-primary{
+    color: #fff!important;
+    background: #FF9800;
+}
+.btn-primary:hover{
+    background: #FFC107;
+}
+.btn-success{
+    color: #fff!important;
+    background: #8BC34A;
+}
+.btn-success:hover{
+    background: #aed581;
+}
+.btn-danger{
+    color: #fff!important;
+    background: #f44336;
+}
+.btn-danger:hover{
+    background: #e57373;
+}
+/* Element styling stop */
+
+/* Kontak styling start */
+.box6{
+    display: inline-block;
+    margin: 0px 1px;
+    width: 49.5%;
+    vertical-align: top;
+}
+#kontak{
+    padding: 62px 0px;
+}
+form input{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: block;
+    height: 40px;
+    margin: 10px 0px;
+    padding: 0px 0px 0px 10px;
+    width: 100%;
+}
+form select{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: block;
+    height: 40px;
+    margin: 10px 0px;
+    padding: 0px 0px 0px 10px;
+    width: 100%;
+}
+form input[type=submit]{
+    border: none;
+    font-size: 12pt;
+}
+form textarea{
+    box-sizing: border-box;
+    font-family: raleway;
+    height: 170px;
+    padding: 10px 0px 0px 10px;
+    width: 100%;
+    resize: vertical;
+}
+#map-wrapper{
+    padding: 90px 30px;
+}
+.map{
+    margin: 0 auto;
+    background: #243137;
+    width: 350px;
+    height: 350px;
+}
+/* ======================== */
+
+/* tentang styling start */
+#tentang{
+    padding: 150px 0px;
+    height: unset;
+}
+/* ======================== */
+
+/* Daftar styling start */
+.box12{
+    width: 100%;
+    margin: 5px 0px;
+}
+#register > form > label{
+    text-align: left!important;
+}
+#register a.btn{
+    color: #fff;
+}
+#register a{
+    text-decoration: none;
+    color: inherit;
+}
+#register{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 0px;
+}
+.btn-account{
+    margin: 0px 5px;
+}
+.btn-account i{
+    padding: 0px 5px;
+}
+.btn-fb{
+    background: #3A589B;
+    color: #fff;
+}
+.btn-gplus{
+    background: #E14833;
+    color: #fff;
+}
+/* ======================== */
+
+/* Footer start */
+footer{
+    color: #fff;
+}
+footer .top{
+    padding: 20px;
+    background: #444;
+}
+footer .box3 {
+    vertical-align: top;
+}
+footer .box3 h3{
+    font-size: 1.4em;
+    margin: 10px 0px;
+}
+footer .box3 p{
+    line-height: 1.5;
+    max-width: 250px;
+}
+footer .box3 ul li{
+    list-style: none;
+    margin: 5px 0px;
+}
+footer .box3 ul li a{
+    color: inherit;
+    text-decoration: none;
+}
+footer .copy{
+    padding: 10px 20px;
+    background: #333;
+}
+/* Footer stop */
+
+/* Responsive start */
+@media(max-width: 768px){
+    /* Navigation bar responsive */
+    .btn-toggle{
+        display: block;
+    }
+    .nav-wrapper{
+        width: 90%;
+    }
+    .navbar{
+        display: none;
+    }
+    .navbar.nav-mobile{
+        display: block;
+    }
+    .nav-mobile li{
+        margin: 0px!important;
+        text-align: center;
+        display: block;
+    }
+    .nav-mobile li:last-child:hover{
+        background: none;
+    }
+    #menu-toggle{
+        display: none;
+        position: fixed;
+        z-index: 2;
+        left: 0px;
+        width: 100%;
+        background: #2196F3;
+        transition: 0.3s all;
+    }
+    #overlayMobile{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        background: rgba(0, 0, 0, .8);
+    }
+    /* ======================== */
+
+    /* Content responsive */
+    #section-2{
+        height: auto;
+    }
+    .box3{
+        margin: 10px 0px;
+        width: 100%;
+    }
+    #section-3 .box3-wrap{
+        width: auto;
+    }
+    /* ======================== */
+
+    /* Footer responsive */
+    footer .wrapper{
+        width: 90%;
+    }
+    /* ======================== */
+
+    /* Kontak responsive */
+    .box6{
+        width: 100%;
+    }
+    /* ======================== */
+}
+/* Responsive stop */

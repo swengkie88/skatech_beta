@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <title>Tentang | Sistem Informasi PKL</title>
+</head>
+<body>
+    <!-- Navigation bar start -->
+    <nav>
+        <div class="nav-wrapper">    
+            <div class="navbar-brand">
+                <a href="index.html" title="Kembali ke halaman utama?">PEKAEL</a>
+            </div>
+            <ul class="navbar left-nav">
+                <li><a href="index.html" title="Beranda">Beranda</a></li>
+                <li><a href="kontak.html" title="Kontak">Kontak</a></li>
+                <li class="active"><a href="" title="Tentang Kami">Tentang Kami</a></li>
+            </ul>
+            <ul class="navbar right-nav">
+                <li id="menu-register"><a href="register.html" title="">Daftar</a></li>
+                <li id="menu-divider"><a>atau</a></li>
+                <li id="menu-login"><a href="login.html" title="" class="btn btn-primary">Masuk</a></li>
+            </ul>
+            <a id="btn-toggle-wrapper">
+                <div id="btn-toggle" class="btn-toggle" onclick="openMenu()">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </a>
+            <div id="menu-toggle">
+                <a id="btn-toggle2-wrapper">  
+                <!-- href="#close" -->
+                    <div id="btn-toggle2" onclick="closeMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <ul class="navbar nav-mobile">
+                    <li class="active"><a href="" title="Beranda">Beranda</a></li>
+                    <li><a href="" title="Kontak">Kontak</a></li>
+                    <li><a href="" title="Tentang Kami">Tentang Kami</a></li>
+                    <li>
+                        <a class="btn btn-primary" onclick="">Masuk</a>
+                        <a class="btn btn-primary" onclick="">Daftar</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="overlayMobile"></div>
+        </div>
+    </nav>
+    <div class="paddingNav"></div>
+    <!-- Navigation bar stop -->
+
+    <!-- Content start -->
+        <div class="container">
+            <div class="wrapper">
+            <!-- Section tentang -->
+                <div class="box6">
+                    <section id="tentang">
+                        <h1>Tentang Kami</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente doloribus deserunt eligendi modi animi, voluptate aperiam facere cumque assumenda! Corporis eum delectus facilis doloribus quaerat possimus id temporibus, placeat molestias.
+                        </p>
+                    </section>
+                </div>
+                <div class="box6">
+                    <section id="map-wrapper">
+                        <div class="map"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    <!-- Content stop -->
+
+    <!-- Footer start -->
+    <footer>
+        <div class="top">
+            <div class="wrapper">
+                <div class="box3">
+                    <h3>PEKAEL</h3>
+                </div>
+                <div class="box3">
+                    <h3>Alamat</h3>
+                    <p>
+                        Jl. AM. Sangaji No.47, Cokrodiningratan, Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55233
+                    </p>
+                </div>
+                <div class="box3">
+                    <h3>Kontak</h3>
+                    <ul>
+                        <li><a href="">Facebook</a></li>
+                        <li><a href="">Instagram</a></li>
+                        <li><a href="">(+62) 838-6784-3497</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <div class="wrapper">
+                <p> &copy; Hak Cipta <a href="" class="btn-link">Skatech.id</a> | Produksi 2018</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer stop -->
+
+    <!-- Javascript start -->
+    <script>
+    function openMenu() {
+        let mobileMenu = document.getElementById('menu-toggle');
+        let overlayMenu = document.getElementById('overlayMobile');
+         mobileMenu.style.top = '0%';
+         mobileMenu.style.opacity = '1';
+         overlayMenu.style.display = 'block';
+    }
+
+    function closeMenu(){
+        let mobileMenu = document.getElementById('menu-toggle');
+        let overlayMenu = document.getElementById('overlayMobile');
+         mobileMenu.style.top = '-100%';
+         mobileMenu.style.opacity = '0';
+         overlayMenu.style.display = 'none';
+    }
+
+</script>
+    <!-- Javascript stop -->
+</body>
+</html>
