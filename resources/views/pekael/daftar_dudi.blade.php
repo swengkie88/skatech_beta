@@ -12,19 +12,31 @@
                     <h1>Daftar DU/DI</h1>
                     <p class="info">Berikut kami sajikan Daftar Dunia Usaha/Industri yang sesuai dengan jurusan anda.</p>
                     <br>
-                    @foreach($dudiSesuai as $dudi)
-                    <div class="box4">
-                        <div class="card-dudi">
-                            <div class="card-image">
+                    @if($cekIdJurusan == "")
+                        <a href="/profil/{{Session::get('id')}}/edit">
+                            <p class="info notif-alert-danger"><i class="fa fa-exclamation-circle"></i> Lengkapi dulu data anda!</p>
+                        </a>
+                        <br>
+                        {{$dudiSesuai}}
+                    @else
+                        @foreach($dudiSesuai as $dudi)
+                        <div class="box4">
+                            <div class="card-dudi">
+                                <div class="card-image">
 
-                            </div>
-                            <div class="card-content">
-                                <h3>{{$dudi->nama_perusahaan}}</h3>
-                                <p class="info">Internet Service Provider</p>
+                                </div>
+                                <a href="/profil_dudi/{{$dudi->id}}">
+                                    <div class="card-content">
+                                        <h3>{{$dudi->nama_perusahaan}}</h3>
+                                        <p class="info">Internet Service Provider</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
+
+                    
                    
                 </div>
             </section>

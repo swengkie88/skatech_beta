@@ -84,16 +84,35 @@ class DashboardController extends Controller
         $this->validate($request,[
             'username' => 'required',
             'nama' => 'required',
+            'avatar_user' => 'image|nullable|max:1999',
             'id_jurusan' => 'required',
             'kelas' => 'required',
             'alamat' => 'required|min:5',
             'phone' => 'required|max:13'
         ]); 
 
+        // Handle file upload
+
+        if($request->hasFile('avatar_user')){
+            //Ambil nama plus ekstensi
+            $filenameext = $request->file('avatar_user')->getClientOriginalName();
+            //Ambil nama path
+            $filename = pathinfo($filenameext, PATHINFO_FILENAME);
+            //Ambil extensi aja
+            $extension = $request->file('avatar_user')->getClientOriginalExtension();
+            // format nama barune
+            $filenamebaru = $filename.'_'.time().'.'.$extension;
+            // upload file 
+            $path = $request->file('avatar_user')->storeAs('public/avatar_user', $filenamebaru);
+        }
+
         $data = Siswa::find($id);
 
         $data->username = $request->username;
         $data->nama = $request->nama;
+        if($request->hasFile('avatar_user')){
+            $data->image = $filenamebaru;
+        }
         $data->id_jurusan = $request->id_jurusan;
         $data->kelas = $request->kelas;
         $data->id_jurusan = $request->id_jurusan;

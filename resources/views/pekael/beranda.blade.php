@@ -14,7 +14,9 @@
                     <h3>Pemberitahuan</h3>
                     <br>
                     @if($statusData == "")
-                    <p class="info">Lengkapi dulu data anda!</p>
+                    <a href="/profil/{{Session::get('id')}}/edit">
+                        <p class="info notif-alert-danger"><i class="fa fa-exclamation-circle"></i> Lengkapi dulu data anda!</p>
+                    </a>
                     @else
                         <p class="info">Tidak ada pemberitahuan terbaru...</p>
                     @endif

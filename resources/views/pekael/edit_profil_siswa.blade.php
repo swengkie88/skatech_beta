@@ -11,7 +11,7 @@
                 <div class="section-content">
                     <h3>Sunting Profil Anda</h3>
                     <br>
-                    <form method="POST" action="/suntingSiswa/{{$detailSiswa->id}}" method="POST">
+                    <form method="POST" action="/suntingSiswa/{{$detailSiswa->id}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div>
                             <input type="hidden" name="_method" value="PUT">
@@ -19,8 +19,10 @@
                             <input type="text" name="username" value="{{$detailSiswa->username}}" placeholder="Nama Pengguna">
                             <label for="">Nama Lengkap</label>
                             <input type="text" name="nama" value="{{$detailSiswa->nama}}" placeholder="Nama Lengkap">
+                            <label for="">Foto Profil</label>
+                            <input type="file" name="avatar_user">
                             <label for="">Jurusan</label>
-                            <select name="id_jurusan" id="">
+                            <select value="{{$detailSiswa->id_jurusan}}" name="id_jurusan" id="">
                                 <option value="1">Konstruksi Gedung, Sanitasi dan Perawatan</option>
                                 <option value="2">Desain Permodelan dan Informasi Bangunan</option>
                                 <option value="3">Teknik Instalasi Tenaga Listrik</option>

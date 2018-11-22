@@ -9,13 +9,30 @@ use App\DuDi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
 
 class User extends Controller
 {
     public function loginPost(Request $request){
         $username = $request->username;
         $password = $request->password;
+                
         $akses = $request->akses;
+
+
+        if($akses == ""){
+            $akses = "admin";
+            
+            $query = DB::select('SELECT username AS cekUsername FROM admin WHERE username="'.$username.'" ');
+            $cekUsername = data_get($query, '0.cekUsername');
+            // dd($cekUsername);
+            if($cekUsername == ""){
+                return redirect()->back()->with('alert', 'Akses tidak sesuai dengan username');
+            }
+
+        }
+
 
         if($akses == "siswa"){
             $data = Siswa::where('username', $username)->first()->toArray();
@@ -26,9 +43,11 @@ class User extends Controller
         else if($akses == "dudi"){
             $data = DuDi::where('username', $username)->first()->toArray();
         }
-        else{
+        else if($akses == "admin"){
             $data = Admin::where('username', $username)->first()->toArray();
         }
+    
+        
 
         if(count($data) > 0){
             if(Hash::check($password,$data['password'])){

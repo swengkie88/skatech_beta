@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Profil')
+@section('title', 'Profil DU/DI')
 
 @section('content')
 <!-- Content start -->
@@ -9,53 +9,63 @@
             
             <section id="profileUser" class="shadow">
                 <div class="profile-banner">
-                    <a href="/profil/{{$siswa->id}}/edit" class="btn btn-white btn-edit">
+                    @if(Session::get('username') == $dudi->username)
+                    <a href="/profil/{{$dudi->id}}/edit" class="btn btn-white btn-edit">
                         <i class="fa fa-edit"></i>
                     </a>
+                    @else
+                    <div></div>
+                    @endif
                     <div class="avatar-profile">
-                        <img src="/storage/avatar_user/{{$siswa->image}}" alt="foto_profil_anda">
+                        <img src="/storage/avatar_user/{{$dudi->image}}" alt="foto_profil_anda">
                     </div>
                     @if(Session::get('akses')=="dudi")
                     <h1>Nama Instansi</h1>
                     @else
-                        @if($siswa->nama == "")
+                        @if($dudi->nama_perusahaan == "")
                             <h1>Nama Lengkap</h1>
                         @else
-                            <h1>{{$siswa->nama}}</h1>
+                            <h1>{{$dudi->nama_perusahaan}}</h1>
                         @endif
                     @endif
                 </div>
                 <div class="section-content">
-                    <h3>Biodata diri anda</h3>
+                    <h3>Profil Dunia Usaha/Industri</h3>
                     <br>
                    <table>
                        <tr>
                            <td>Nama Pengguna</td>
                            <td>:</td>
-                           <td>{{$siswa->username}}</td>
+                           <td>{{$dudi->username}}</td>
                        </tr>
                        <tr>
                            <td>Jurusan</td>
                            <td>:</td>
-                           <td>{{$namaJurusan}}</td>
-                       </tr>
-                       <tr>
-                            <td>Kelas</td>
-                            <td>:</td>
-                            <td>{{$siswa->kelas}}</td>
+                           <td>{{$dudi->id_jurusan}}</td>
                        </tr>
                        <tr>
                            <td>Alamat</td>
                            <td>:</td>
-                           <td>{{$siswa->alamat}}</td>
+                           <td>{{$dudi->alamat}}</td>
                        </tr>
                        <tr>
                            <td>No. Handphone</td>
                            <td>:</td>
-                           <td>{{$siswa->phone}}</td>
+                           <td>{{$dudi->phone}}</td>
                        </tr>
                    </table>
                 </div>
+                @if(Session::get('akses')=="siswa")
+                <div class="section-footer">
+                    <form action="pilihDuDi/" method="POST">
+                        @csrf
+                        <input type="hidden" name="id_dudi" value="{{$dudi->id}}">
+                        <button class="btn btn-success" type="submit">Pilih DU/DI</button>
+                    </form>
+                </div>
+                @else
+                <div></div>
+                @endif
             </section>
         </div>
     </div>

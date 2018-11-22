@@ -21,9 +21,30 @@ Route::get('/kontak', 'PagesController@kontak');
 Route::get('/tentang_kami', 'PagesController@tentang');
 Route::get('/daftar', 'PagesController@daftar');
 Route::get('/masuk', 'PagesController@masuk');
-
 Route::get('/beranda', 'PagesController@beranda');
+
+
 Route::get('/daftar_dudi', 'PagesController@daftar_dudi');
+Route::get('/profil_dudi/{id}', 'PagesController@detailDuDi');
+
+// Routing pengajuan PKL
+Route::get('/pilihDuDi', 'PagesController@pilihDuDi');
+Route::get('/buatKelompok', function () {
+    return view('pekael.buat_kelompok');
+});
+
+Route::post('/buatKelompok_post', 'PagesController@buatKelompokStore');
+Route::get('/buatKelompok', function () {
+    return view('pekael.buat_kelompok');
+});
+Route::post('/pilihAnggota_post', 'PagesController@pilihAnggotaStore');
+Route::get('/pilihAnggota', function () {
+    return view('pekael.pilihAnggota');
+});
+
+
+Route::post('/buatKelompok_post', 'PagesController@buatKelompokStore');
+
 
 Route::get('/profil/{id}', 'PagesController@profil');
 Route::get('/profil/{id}/edit', 'PagesController@editProfil');

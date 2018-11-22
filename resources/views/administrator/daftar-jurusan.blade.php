@@ -59,7 +59,58 @@
             </section>
         </div>
     </div>
-    @include('inc.modal-tambah-jurusan')
-    @include('inc.modal-hapus-jurusan')
+   {{-- Modal Start --}}
+
+    {{-- Modal tambah jurusan --}}
+    <?php if(isset($_GET['tambah-jurusan'])){ ?>
+        <div id="modal-add">
+            <div class="modal-container">
+                <div class="modal-close" onclick="window.location = '/daftarJurusan'">
+                    <i class="fa fa-close"></i>
+                </div>
+                <div class="section-head">
+                    <h2>Tambahkan Jurusan</h2>
+                    <p class="info">Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="section-body">
+                    <form method="POST" action="{{url('tambahJurusan')}}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-first">
+                            <input type="text" name="jurusan" placeholder="Nama Jurusan">
+                            <textarea name="deskripsi_jurusan" id="" cols="80" rows="2" placeholder="Deskripsi Jurusan"></textarea>
+                            <br>
+                            <br>
+                            <button class="btn btn-block btn-success" type="submit">TAMBAHKAN</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        {{-- Modal Konfirmasi Hapus --}}
+        <?php if(isset($_GET['hapus-jurusan'])){
+            $id_jurusan = $_GET['hapus-jurusan'];
+         ?>
+            <div id="modal-add">
+                <div class="modal-container">       
+                    <div class="section-body">
+                        <p>
+                            Apakah anda yakin ingin menghapus data ini?
+                        </p>
+                        <br>
+                        <form action="/daftarJurusan/{{$id_jurusan}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="_method" value="DELETE">
+                            <div class="text-center">
+                                <button type="submit" title="Hapus post ini?" class="btn btn-danger">Hapus</button>
+                                <a href="/daftarJurusan" class="btn btn-primary">Tidak</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+        {{-- Modal Stop --}}
+
 <!-- Content stop -->
 @endsection

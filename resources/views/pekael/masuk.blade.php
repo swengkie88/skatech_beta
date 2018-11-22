@@ -11,7 +11,7 @@
                 <h1>Masuk ke akun Anda</h1>
                 <form action="{{url('loginPost')}}" method="POST">
                     {{ csrf_field() }}
-                    <label for="">Masuk sebagai</label>
+                    <label for="">Akses sebagai</label>
                     <select name="akses" id="">
                         <option value="">---</option>
                         <option value="siswa">Siswa</option>
