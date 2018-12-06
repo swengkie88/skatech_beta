@@ -12,8 +12,12 @@
                     <a href="/profil/{{$siswa->id}}/edit" class="btn btn-white btn-edit">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <div class="avatar-profile">
-                        <img src="/storage/avatar_user/{{$siswa->image}}" alt="foto_profil_anda">
+                    <div class="avatar-profile text-center">
+                        @if($siswa->images !== "")
+                            <img src="/storage/avatar_user/{{$siswa->image}}" alt="foto_profil_anda">
+                        @else
+                            <h2><i class="fa fa-user"></i></h2>
+                        @endif
                     </div>
                     @if(Session::get('akses')=="dudi")
                     <h1>Nama Instansi</h1>

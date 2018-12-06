@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Siswa;
 use App\DuDi;
+use App\PjJurusan;
 use App\Kelompok;
 use App\DetailKelompok;
 use Illuminate\Support\Facades\Session;
@@ -22,8 +23,15 @@ class PagesController extends Controller
     }
     public function beranda(){
         $username = Session::get('username');
-        
-        $query = DB::select('select nama AS nama from `pkl_siswa` where username="'.$username.' " ' );
+        if(Session::get('akses')=="dudi"){
+            $query = DB::select('select nama_perusahaan AS nama from `pkl_dudi` where username="'.$username.' " ' );
+        }
+        else if(Session::get('akses')=="pj_jurusan"){
+            $query = DB::select('select nama AS nama from `pkl_pj_jurusan` where username="'.$username.' " ' );
+        }
+        else{
+            $query = DB::select('select nama AS nama from `pkl_siswa` where username="'.$username.' " ' );
+        }
         $statusData = data_get($query, '0.nama');
 
         return view('pekael.beranda', ['statusData' => $statusData]);
@@ -47,16 +55,20 @@ class PagesController extends Controller
         $dudi = DuDi::all();
         return view('pekael.daftar_dudi', ['cekIdJurusan' => $cekIdJurusan ,'dudiSesuai' => $dudiSesuai]);
     }
-
-    public function detailDuDi($id){
-        $dudi = DuDi::find($id);
-        return view('pekael.profil_dudi')->with('dudi', $dudi);
-    }
    
     public function pilihDuDi(Request $request){
-        $bawaIdDuDi = $request->id_dudi;
-        dd($bawaIdDuDi);
-        return redirect('/buatKelompok')->with('bawaIdDuDi', $bawaIdDuDi);
+        
+        $data = new Kelompok();
+        $data->id_jurusan = $request->id_jurusan;
+        $data->id_dudi = $request->id_dudi;
+        $data->tahun = "2018/2019";
+        $data->period = "1";
+        $data->verify_by_pj = 0;
+        $data->save(); 
+
+        return redirect('/buatKelompok');
+    
+    
     }
 
     public function buatKelompokStore(){
@@ -64,13 +76,7 @@ class PagesController extends Controller
         $ambilIdJurusan = DB::select('SELECT id_jurusan FROM pkl_siswa WHERE id="'.$id_siswa.'"');
         dd($ambilIdJurusan);
 
-        $data = new Kelompok();
-        $data->id_jurusan = $request->id_jurusan;
-        $data->id_dudi = $request->id_dudi;
-        $data->tahun = $request->tahun;
-        $data->period = $request->period;
-        $data->verify_by_pj = $request->verify_by_pj;
-        $data->save(); 
+        
         $data2 = new DetailKelompok();
         $data2->id_kelompok = $data->id; 
 
@@ -89,33 +95,129 @@ class PagesController extends Controller
         return redirect('/beranda');
     }
 
-    // public function buatKelompok(Request $request, $id){
-    //     $dataKelompok = Kelompok::find($id);
-
-    //     $data2 = new DetailKelompok();
-    //     $data2->id_kelompok = $data->id;
-    //     $data2->id_siswa = $request->id_siswa;
-    //     $data2->acc = $request->acc;
-    //     $data2->save();
-    //     return redirect('/beranda');
-
-    //     return view('pekael.buat_kelompok');
-    // }
-
     public function profil($id){
         $siswa = Siswa::find($id);
         $idJurusan = $siswa->id_jurusan;
-
-        $query = DB::select('SELECT jurusan AS namaJurusan FROM pkl_jurusan WHERE id='.$idJurusan.'');
-        $namaJurusan = data_get($query, '0.namaJurusan');
+        if($idJurusan == ""){
+            $namaJurusan = "Data masih kosong";
+        }
+        else{    
+            $query = DB::select('SELECT jurusan AS namaJurusan FROM pkl_jurusan WHERE id='.$idJurusan.'');
+            $namaJurusan = data_get($query, '0.namaJurusan');
+        }
   
 
         return view('pekael.profil')->with('siswa', $siswa)->with('namaJurusan', $namaJurusan);
     }
+
+    public function detailDuDi($id){
+        $dudi = DuDi::find($id);
+        $idJurusan = $dudi->id_jurusan;
+
+        if($idJurusan == ""){
+            $namaJurusan = "Data masih kosong";
+        }
+        else{    
+            $query = DB::select('SELECT jurusan AS namaJurusan FROM pkl_jurusan WHERE id='.$idJurusan.'');
+            $namaJurusan = data_get($query, '0.namaJurusan');
+        }
+
+        return view('pekael.profil_dudi')->with('dudi', $dudi)->with('namaJurusan', $namaJurusan);
+    }
+
+    public function profil_pj($id){
+        $pjJurusan = PjJurusan::find($id);
+        $idJurusan = $pjJurusan->id_jurusan;
+
+        $query = DB::select('SELECT jurusan AS namaJurusan FROM pkl_jurusan WHERE id='.$idJurusan.'');
+        $namaJurusan = data_get($query, '0.namaJurusan');
+
+        return view('pekael.profil_pj_jurusan')->with('pjJurusan', $pjJurusan)->with('namaJurusan', $namaJurusan);
+    }
     
     public function editProfil($id){
-        $detailSiswa = Siswa::find($id);
-        return view('pekael.edit_profil_siswa')->with('detailSiswa', $detailSiswa);
+        if(Session::get('akses')=="dudi"){
+            $detailUser = DuDi::find($id);
+        }   
+        else if(Session::get('akses')=="pj_jurusan"){
+            $detailUser = PjJurusan::find($id);
+        }
+        else{
+            $detailUser = Siswa::find($id);
+        }
+
+        return view('pekael.edit_profil')->with('detailUser', $detailUser);
+    }
+
+    public function perbaruiProfil(Request $request, $id){
+        $this->validate($request,[
+            'username' => 'required',
+            'nama' => 'required',
+            'avatar_user' => 'image|nullable|max:1999',
+            'id_jurusan' => 'required',
+        ]); 
+
+        // Handle file upload
+
+        if($request->hasFile('avatar_user')){
+            //Ambil nama plus ekstensi
+            $filenameext = $request->file('avatar_user')->getClientOriginalName();
+            //Ambil nama path
+            $filename = pathinfo($filenameext, PATHINFO_FILENAME);
+            //Ambil extensi aja
+            $extension = $request->file('avatar_user')->getClientOriginalExtension();
+            // format nama barune
+            $filenamebaru = $filename.'_'.time().'.'.$extension;
+            // upload file 
+            $path = $request->file('avatar_user')->storeAs('public/avatar_user', $filenamebaru);
+        }
+
+        if(Session::get('akses')=="dudi"){
+            $data = DuDi::find($id);
+        }
+        elseif(Session::get('akses')=="pj_jurusan"){
+            $data = PjJurusan::find($id);
+        }
+        else{
+            $data = Siswa::find($id);
+        }
+
+        $data->username = $request->username;
+        
+        if(Session::get('akses')=="siswa" OR Session::get('akses')=="pj_jurusan"){
+            $data->nama = $request->nama;
+        }
+        else{
+            $data->nama_perusahaan = $request->nama;
+        }
+        
+        if($request->hasFile('avatar_user')){
+            $data->image = $filenamebaru;
+        }
+        $data->id_jurusan = $request->id_jurusan;
+        
+        if(Session::get('akses')=="siswa"){
+            $data->kelas = $request->kelas;
+        }
+        
+        $data->id_jurusan = $request->id_jurusan;
+
+        Session::put('id_jurusan',$data->id_jurusan);   
+
+        $data->alamat = $request->alamat;
+        $data->phone = $request->phone;
+
+        $data->save();
+
+        if(Session::get('akses')=="dudi"){
+            return redirect('profil_dudi/'.Session::get('id').'');
+        }
+        elseif(Session::get('akses')=="pj_jurusan"){
+            return redirect('profil_pj_jurusan/'.Session::get('id').'');
+        }
+        else{
+            return redirect('profil/'.Session::get('id').'');
+        }
     }
 
     public function kontak(){

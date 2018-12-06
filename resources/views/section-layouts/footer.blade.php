@@ -2,8 +2,15 @@
 <footer>
     <div class="top">
         <div class="wrapper">
-            <div class="box3">
-                <h3>PEKAEL</h3>
+            <div class="box3 text-center" style="
+                    padding: 22px 0px 0px 0px;
+                ">
+                <img style="width: 70px;" src="{{asset('assets/icons/icon_apps.png')}}" alt="icon_mysipi">
+                <h3 style="
+                        font-size: 13pt;
+                        font-weight: normal;
+                ">Sistem Informasi<br> 
+                    Praktik Industri</h3>
             </div>
             <div class="box3">
                 <h3>Alamat</h3>
@@ -46,29 +53,6 @@ function closeMenu(){
      mobileMenu.style.opacity = '0';
      overlayMenu.style.display = 'none';
 }
-
-var i = 1;
-$('.progress .circle').removeClass().addClass('circle');
-$('.progress .bar').removeClass().addClass('bar');
-setInterval(function() {
-  $('.progress .circle:nth-of-type(' + i + ')').addClass('active');
-  
-  $('.progress .circle:nth-of-type(' + (i-1) + ')').removeClass('active').addClass('done');
-  
-  $('.progress .circle:nth-of-type(' + (i-1) + ') .label').html('&#10003;');
-  
-  $('.progress .bar:nth-of-type(' + (i-1) + ')').addClass('active');
-  
-  $('.progress .bar:nth-of-type(' + (i-2) + ')').removeClass('active').addClass('done');
-  
-  i++;
-  
-  if (i==0) {
-    $('.progress .bar').removeClass().addClass('bar');
-    $('.progress div.circle').removeClass().addClass('circle');
-    i = 1;
-  }
-}, 1000);
 
 </script>
 <!-- Javascript stop -->

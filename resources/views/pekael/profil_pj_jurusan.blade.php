@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Profil DU/DI')
+@section('title', 'Profil PJ Jurusan')
 
 @section('content')
 <!-- Content start -->
@@ -9,36 +9,40 @@
             
             <section id="profileUser" class="shadow">
                 <div class="profile-banner">
-                    @if(Session::get('username') == $dudi->username)
-                    <a href="/profil/{{$dudi->id}}/edit" class="btn btn-white btn-edit">
+                    @if(Session::get('username') == $pjJurusan->username)
+                    <a href="/profil/{{$pjJurusan->id}}/edit" class="btn btn-white btn-edit">
                         <i class="fa fa-edit"></i>
                     </a>
                     @else
                     <div></div>
                     @endif
                     <div class="avatar-profile text-center">
-                        @if($dudi->images !== "")
-                            <img src="/storage/avatar_user/{{$dudi->image}}" alt="foto_profil_anda">
-                        @elseif($dudi->nama_perusahaan == "")
-                            <h2><i class="fa fa-building"></i></h2>
+                        @if(!$pjJurusan->images == "")
+                            <img src="/storage/avatar_user/{{$pjJurusan->image}}" alt="foto_profil_anda">
                         @else
-                            <h2><?php echo substr($dudi->nama_perusahaan, 0, 1) ?></h2>
+                            @if($pjJurusan->nama == "")
+                                <h2><i class="fa fa-user"></i></h2>
+                            @else
+                                <h2><?php echo substr($pjJurusan->nama, 0, 1) ?></h2>
+                            @endif
                         @endif
                     </div>
-                        @if($dudi->nama_perusahaan == "")
-                            <h1>Nama Instansi</h1>
+                            <h1>
+                        @if($pjJurusan->nama == "")
+                                Nama Lengkap
                         @else
-                            <h1>{{$dudi->nama_perusahaan}}</h1>
+                                {{$pjJurusan->nama}}
                         @endif
+                            </h1>
                 </div>
                 <div class="section-content">
-                    <h3>Profil Dunia Usaha/Industri</h3>
+                    <h3>Biodata Diri Anda</h3>
                     <br>
                    <table>
                        <tr>
                            <td>Nama Pengguna</td>
                            <td>:</td>
-                           <td>{{$dudi->username}}</td>
+                           <td>{{$pjJurusan->username}}</td>
                        </tr>
                        <tr>
                            <td>Jurusan Terkait</td>
@@ -48,12 +52,12 @@
                        <tr>
                            <td>Alamat</td>
                            <td>:</td>
-                           <td>{{$dudi->alamat}}</td>
+                           <td>{{$pjJurusan->alamat}}</td>
                        </tr>
                        <tr>
                            <td>No. Handphone</td>
                            <td>:</td>
-                           <td>{{$dudi->phone}}</td>
+                           <td>{{$pjJurusan->phone}}</td>
                        </tr>
                    </table>
                 </div>
@@ -61,9 +65,7 @@
                 <div class="section-footer">
                     <form action="pilihDuDi/" method="POST">
                         @csrf
-                        <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="id_jurusan" value="{{Session::get('id_jurusan')}}">
-                        <input type="hidden" name="id_dudi" value="{{$dudi->id}}">
+                        <input type="hidden" name="id_dudi" value="{{$pjJurusan->id}}">
                         <button class="btn btn-success" type="submit">Pilih DU/DI</button>
                     </form>
                 </div>

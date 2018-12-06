@@ -19,7 +19,7 @@
         </div>
         <div class="box6">
             <section id="map-wrapper">
-                <div class="map"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.119696233555!2d110.36517081432629!3d-7.777130979311855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a58373fffffff%3A0xa4ec1ca156555926!2sSMK+Negeri+2+Yogyakarta!5e0!3m2!1sid!2sid!4v1543999432612" frameborder="0" style="border:0" allowfullscreen></iframe>
             </section>
         </div>
     </div>

@@ -52,7 +52,10 @@ class User extends Controller
         if(count($data) > 0){
             if(Hash::check($password,$data['password'])){
                 Session::put('username',$data['username']);                 
-                Session::put('akses',$data['akses']);                 
+                Session::put('akses',$data['akses']);
+                if((Session::get('akses')=="siswa") AND (Session::get('akses')=="pj_jurusan") AND (Session::get('akses')=="dudi")){
+                    Session::put('id_jurusan',$data['id_jurusan']);                 
+                }
                 Session::put('id',$data['id']);
                 Session::put('login',TRUE);                 
                 if(Session::get('akses')=="admin"){
@@ -91,20 +94,30 @@ class User extends Controller
         //    /dd($akses_array);
             if($akses == "siswa"){
                 $data = new Siswa();
+                $tb = "pkl_siswa";
             }
             elseif ($akses == "pj_jurusan") {
                 $data = new PjJurusan();
+                $tb = "pkl_pj_jurusan";
             }
             else if($akses == "dudi"){
                 $data = new DuDi();
+                $tb = "pkl_dudi";
             }
-         
-            $data->username = $request->username;
+            
+
+            $cekUsername = DB::select('SELECT username as username FROM '.$tb.' WHERE username = "'.$request->username.'"');
+            $cekUsername = data_get($cekUsername, '0.username');
+
+            if($cekUsername == ""){
+                $data->username = $request->username;
+            }
+            else{
+                return redirect()->back()->with('alert', 'Maaf username telah tersedia');
+            }
+
             $data->password = bcrypt($request->password);
             $data->akses = $request->akses;
-            
-            Session::put('username', $data->username);  
-            
             $data->save();
             return redirect('masuk')->with('alert-success', 'Kamu berhail register');
         }

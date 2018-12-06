@@ -18,7 +18,7 @@
                         <option value="pj_jurusan">PJ Jurusan</option>
                         <option value="dudi">DU/DI</option>
                     </select>
-                    <input type="text" name="username" value="{{Session::get('username')}}" placeholder="Nama Pengguna">
+                    <input type="text" name="username" placeholder="Nama Pengguna">
                     <input type="password" name="password" placeholder="Kata Sandi">
                     <input type="submit" name="submit-masuk" value="Masuk" class="btn btn-primary">
                     <p class="right"><a href="">Lupa Kata Sandi Anda?</a></p>

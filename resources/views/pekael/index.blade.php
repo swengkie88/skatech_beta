@@ -19,10 +19,12 @@
     <div class="container">
         <div class="wrapper">
         <!-- Section tentang -->
-            <section id="section-1">
+            <section id="section-1" class="text-center">
                 <h1>Tentang Kami</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente doloribus deserunt eligendi modi animi, voluptate aperiam facere cumque assumenda! Corporis eum delectus facilis doloribus quaerat possimus id temporibus, placeat molestias.
+                    Platform berbasis web dan android
+                    yang mengelola pengajuan Praktik
+                    Industri Siswa SMK
                 </p>
             </section>
         </div>
@@ -32,15 +34,27 @@
                 <h1>Layanan</h1>
                 <div class="box3">
                     <i class="fa fa-link"></i>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa iste rerum nostrum tenetur? Vel saepe, dolorem repellat enim beatae fugit.</p>
+                    <h2>Pengajuan PI</h2>
+                    <br>
+                    <p>
+                        Kini mengajukan Praktik Industri lebih mudah dan efisien, anda bisa melakukannya melalui gawai android anda.
+                    </p>
                 </div>
                 <div class="box3">
                     <i class="fa fa-link"></i>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint itaque eaque autem deleniti fugiat. Aperiam repellendus maiores saepe est nesciunt!</p>
+                    <h2>Mencari DU/DI</h2>
+                    <br>
+                    <p>
+                        Anda tak perlu bingung lagi mencari Dunia Usaha/Industri yang sesuai jurusan.
+                    </p>
                 </div>
                 <div class="box3">
-                    <i class="fa fa-link"></i>  
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia distinctio maiores quos totam quod. Rerum tempora voluptas reprehenderit provident pariatur.</p>
+                    <i class="fa fa-link"></i> 
+                    <h2>Interaktif</h2>
+                    <br> 
+                    <p>
+                        Dapatkan Pemberitahuan mengenai status pengajuan anda yang interaktif dan mudah dipahami,
+                    </p>
                 </div>
             </div>
         </section>
@@ -51,7 +65,12 @@
                     <div class="box3-wrap">
                         <div class="box3">
                             <i class="fa fa-user"></i>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa iste rerum nostrum tenetur? Vel saepe, dolorem repellat enim beatae fugit.</p>  
+                            <div class="id-testi text-center">
+                                <h2>Ben Tea</h2>
+                                <p class="info">Citranet</p>
+                            </div>
+                            <br>
+                            <p>Dengan adanya mySIPI dari skatech, membuat perusahaan kami lebih dikenal oleh siswa SMK yang suatu waktu dapat menjadi pegawai kami</p>  
                         </div>
                     </div>
                 </div>

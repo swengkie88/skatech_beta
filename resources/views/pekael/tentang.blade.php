@@ -4,19 +4,24 @@
 @section('content')
   <!-- Content start -->
   <div class="container">
-        <div class="wrapper">
+        <div class="wrapper tentang-wrapper">
         <!-- Section tentang -->
             <div class="box6">
                 <section id="tentang">
                     <h1>Tentang Kami</h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente doloribus deserunt eligendi modi animi, voluptate aperiam facere cumque assumenda! Corporis eum delectus facilis doloribus quaerat possimus id temporibus, placeat molestias.
+                        Platform berbasis web dan android
+                        yang mengelola pengajuan Praktik
+                        Industri Siswa SMK. Bersama kami Praktik Industri
+                        dapat dilaksanakan dengan mudah dan praktis, dan 
+                        sesuai tren zaman sekarang yang mengutamakan prinsip
+                        <i>paperless.</i>
                     </p>
                 </section>
             </div>
             <div class="box6">
-                <section id="map-wrapper">
-                    <div class="map"></div>
+                <section id="tentang-wrapper">
+                    <img src="{{asset('assets/img/sample_img.png')}}" alt="gambar_contoh">
                 </section>
             </div>
         </div>

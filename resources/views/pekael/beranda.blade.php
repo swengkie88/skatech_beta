@@ -1,5 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Dasbor Siswa')
+
+@if(Session::get('akses')=="dudi")
+    @section('title', 'Dasbor DU/DI')
+@elseif(Session::get('akses')=="pj_jurusan")
+    @section('title', 'Dasbor PJ Jurusan')
+@else
+    @section('title', 'Dasbor Siswa')
+@endif
 
 @section('content')
 <!-- Content start -->
@@ -8,15 +15,29 @@
         <!-- Section tentang -->
             
             <br>
-            <h1>Dasbor Siswa</h1>
+            @if(Session::get('akses')=="dudi")
+                <h1>Dasbor DU/DI</h1>
+            @elseif(Session::get('akses')=="pj_jurusan")
+                <h1>Dasbor PJ Jurusan</h1>
+            @else
+                <h1>Dasbor Siswa</h1>
+            @endif
+                
             <section class="shadow">
                 <div class="section-content">
                     <h3>Pemberitahuan</h3>
                     <br>
+                    <p>{{Session::get('id_jurusan')}}</p>
                     @if($statusData == "")
-                    <a href="/profil/{{Session::get('id')}}/edit">
-                        <p class="info notif-alert-danger"><i class="fa fa-exclamation-circle"></i> Lengkapi dulu data anda!</p>
-                    </a>
+                        @if(Session::get('akses')=="dudi")
+                            <a href="/profil_dudi/{{Session::get('id')}}/edit">
+                        @elseif(Session::get('akses')=="pj_jurusan")
+                            <a href="/profil_pj_jurusan/{{Session::get('id')}}/edit">
+                        @else
+                            <a href="/profil/{{Session::get('id')}}/edit"> 
+                        @endif
+                                <p class="info notif-alert-danger"><i class="fa fa-exclamation-circle"></i> Lengkapi dulu data anda!</p>
+                            </a>
                     @else
                         <p class="info">Tidak ada pemberitahuan terbaru...</p>
                     @endif

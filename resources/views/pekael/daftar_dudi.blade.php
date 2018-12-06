@@ -7,7 +7,7 @@
         <div class="wrapper">
         <!-- Section tentang -->
             
-            <section id="section-1" class="shadow">
+            <section class="shadow daftar-dudi">
                 <div class="section-content">
                     <h1>Daftar DU/DI</h1>
                     <p class="info">Berikut kami sajikan Daftar Dunia Usaha/Industri yang sesuai dengan jurusan anda.</p>
@@ -23,7 +23,7 @@
                         <div class="box4">
                             <div class="card-dudi">
                                 <div class="card-image">
-
+                                    <img src="/storage/avatar_user/{{$dudi->image}}" alt="">
                                 </div>
                                 <a href="/profil_dudi/{{$dudi->id}}">
                                     <div class="card-content">

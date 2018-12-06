@@ -2,11 +2,13 @@
  <nav class="navbar-admin">
         <div class="nav-wrapper-admin">    
             <div class="navbar-brand admin">
-            @if(!Session::get('username'))
-                <a href="/" title="Kembali ke halaman utama?">PEKAEL</a>
-            @else
-                <a href="/beranda" title="Kembali ke halaman utama?">PEKAEL</a>
-            @endif
+                <a href="/dashboard" title="Kembali ke halaman utama?">
+                    <img src="{{asset('assets/icons/icon_apps.png')}}" alt="Icon mysipi">
+                    <p>
+                        Sistem Informasi<br>
+                        Praktek Industri
+                    </p>
+                </a>
             </div>
                 <ul class="navbar">
                     <li><i class="fa fa-tachometer"></i><a href="/dashboard" title="Dashboard">Dashboard</a></li>

@@ -3,26 +3,56 @@
     <div class="nav-wrapper">    
         <div class="navbar-brand">
         @if(!Session::get('username'))
-            <a href="/" title="Kembali ke halaman utama?">PEKAEL</a>
+            <a href="/" title="Kembali ke halaman utama?">
+                <img src="{{asset('assets/icons/icon_apps_no_mask.png')}}" alt="Icon mysipi">
+            </a>
         @else
-            <a href="/beranda" title="Kembali ke halaman utama?">PEKAEL</a>
+            <a href="/beranda" title="Kembali ke halaman utama?">
+                <img src="{{asset('assets/icons/icon_apps_no_mask.png')}}" alt="Icon mysipi">
+            </a>
         @endif
         </div>
         {{-- Menu pas nggak login --}}
-        @if(!Session::get('username'))
-            <ul class="navbar left-nav">
-                <li><a href="/" title="Beranda">Beranda</a></li>
-                <li><a href="/kontak" title="Kontak">Kontak</a></li>
-                <li><a href="/tentang_kami" title="Tentang Kami">Tentang Kami</a></li>
-            </ul>
-        {{-- Menu pas login --}}
-        @else
-            <ul class="navbar left-nav">
-                <li><a href="/beranda" title="Dasbor Siswa">Dasbor Siswa</a></li>
-                <li><a href="/daftar_dudi" title="Daftar DU/DI">Daftar DU/DI</a></li>
-                <li><a href="/profil/{{Session::get('id')}}" title="Profil">Profil</a></li>
-            </ul>
-        @endif
+            @if(!Session::get('username'))
+                <ul class="navbar left-nav">
+                    <li><a href="/" title="Beranda">Beranda</a></li>
+                    <li><a href="/kontak" title="Kontak">Kontak</a></li>
+                    <li><a href="/tentang_kami" title="Tentang Kami">Tentang Kami</a></li>
+                </ul>
+            {{-- Menu pas login --}}
+            @else
+                <ul class="navbar left-nav">
+                    @if(Session::get('akses')=="siswa")
+                        <li><a href="/beranda" title="Dasbor Siswa">Dasbor Siswa</a></li>
+                    @elseif(Session::get('akses')=="dudi")
+                        <li><a href="/beranda" title="Dasbor DU/DI">Dasbor DU/DI</a></li>
+                    @else
+                        <li><a href="/beranda" title="Dasbor PJ Jurusan">Dasbor PJ Jurusan</a></li>
+                    @endif
+                    <li>
+                        @if(Session::get('akses')=="dudi")
+                        <a href="/daftar_pengajuan" title="Daftar Pengajuan">
+                            Daftar Pengajuan
+                        @else
+                            <a href="/daftar_dudi" title="Daftar DU/DI">
+                            Daftar DU/DI
+                        @endif
+                        </a>
+                    </li>
+                    <li>
+                        @if(Session::get('akses')=="dudi")
+                            <a href="/profil_dudi/{{Session::get('id')}}">
+                        @elseif(Session::get('akses')=="pj_jurusan")
+                            <a href="/profil_pj_jurusan/{{Session::get('id')}}">
+                        @else
+                            <a href="/profil/{{Session::get('id')}}">
+                        @endif
+                            Profil
+                        </a>
+                    </li>
+                </ul>
+            @endif
+
         @if(!Session::get('username'))
         <ul class="navbar right-nav">
             <li id="menu-register"><a href="/daftar" title="">Daftar</a></li>
